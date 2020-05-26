@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+  padding: 0px
+}
+
+/* HOME COMPONENT */
+
+.homeWrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  top: 50;
+
+}
+
+.authenticationWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.authenticationInput {
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  
+
+}
+
+.authenticationActions {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
