@@ -3,8 +3,9 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./Auth";
 
 function PrivateRoute({ component: Component, ...rest}) {
-  const currentUser = useContext(AuthContext)
-  // console.log(currentUser.value)
+  const {currentUser} = useContext(AuthContext)
+  // console.log(currentUser)
+  // console.log(!!currentUser)
 
   // if currentUser is not null, load protected component with original props 
   // if currentUser is null, access is denied, so load /login path
@@ -12,7 +13,7 @@ function PrivateRoute({ component: Component, ...rest}) {
     <Route 
       {...rest}
       render={props => (
-        currentUser.value ? (
+        !!currentUser ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: "/login" }} />

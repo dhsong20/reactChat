@@ -8,7 +8,7 @@ function Login({ history }) {
   const handleLogin = useCallback(async event => {
     event.preventDefault()
     const { email, password } = event.target.elements
-    console.log(email.value, password.value)
+    // console.log(email.value, password.value)
     try {
       await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
       history.push("/")
@@ -17,7 +17,8 @@ function Login({ history }) {
     }
   }, [history])
 
-  const currentUser = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
+  
   if (currentUser) {
     return <Redirect to="/" />
   } 
