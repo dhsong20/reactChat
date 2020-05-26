@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import '../../css/styles.css';
 import firebase from '../../firebase';
 
-function login() {
+function Login() {
   return (
     <div className="homeWrapper">
       
@@ -18,7 +19,10 @@ function login() {
 
         <div className="authenticationActions">  
 
-          <button>Sign Up</button>
+          <Link to="/signup">
+            <button>Sign Up</button>
+          </Link>
+
           <button>Login</button>
         
         </div>
@@ -30,4 +34,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from '../../firebase'
 
-function home() {
+function Home() {
   return (
     <div>
       <h1>Home</h1>
@@ -14,4 +14,4 @@ function signOut() {
   firebase.auth().signOut()
 }
 
-export default home
+export default Home
