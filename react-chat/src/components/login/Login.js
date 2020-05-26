@@ -1,37 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
-import '../../css/styles.css';
+import React, { useCallback, useContext } from 'react';
+import { Link, withRouter, Redirect } from 'react-router-dom';
+import AuthContext from '../../Auth'
 import firebase from '../../firebase';
 
-function Login() {
+function Login({ history }) {
+
+  const handleLogin = useCallback(async event => {
+    event.preventDefault()
+    const { email, password } = event.target.elements
+    console.log(email.value, password.value)
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+      history.push("/")
+    } catch(error) {
+      alert(error)
+    }
+  }, [history])
+
+  const currentUser = useContext(AuthContext)
+  if (currentUser) {
+    return <Redirect to="/" />
+  } 
   return (
     <div className="homeWrapper">
       
       <div className="authenticationWrapper">
         <h1>Hello!</h1>
-        <div className="authenticationInput">
-
-          <input className="inputEMAIL" type="email" placeholder="email..."></input>
-          <input className="inputPW" type="password" placeholder="password..."></input>
-
-        </div>
-
-        <div className="authenticationActions">  
-
+        <form onSubmit={handleLogin}>
+          <label>
+            Email
+            <input name="email" type="email" placeholder="email..."></input>
+          </label>
+          <label>
+            Password
+            <input name="password" type="password" placeholder="password..."></input>
+          </label>
           <Link to="/signup">
             <button>Sign Up</button>
           </Link>
-
-          <button>Login</button>
-        
-        </div>
-        
-
-
+          <input type="submit" value="Log In"/>
+        </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default withRouter(Login);

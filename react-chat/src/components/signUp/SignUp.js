@@ -28,7 +28,7 @@ function SignUp({ history }) {
           Password
           <input name="password" type="password" placeholder="password..."/>
         </label>
-        <input type="submit">Sign up</input>
+        <input type="submit" value="Submit"/>
       </form>
     </div>
 
