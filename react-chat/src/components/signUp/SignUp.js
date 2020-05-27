@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 
 function SignUp({ history }) {
 
-  const handleSignUp = useCallback(async event => {
+
+  async function handleSignUp(event) {
+
     event.preventDefault()
     const { email, password } = event.target.elements
     try {
@@ -14,7 +16,7 @@ function SignUp({ history }) {
       console.log("error with signing up new user: ", error)
     }
 
-  }, [history])
+  }
 
   return(
     <div>

@@ -5,17 +5,17 @@ import firebase from '../../firebase';
 
 function Login({ history }) {
 
-  const handleLogin = useCallback(async event => {
+  async function handleLogin(event) {
     event.preventDefault()
     const { email, password } = event.target.elements
-    // console.log(email.value, password.value)
     try {
       await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
       history.push("/")
     } catch(error) {
       alert(error)
     }
-  }, [history])
+
+  }
 
   const { currentUser } = useContext(AuthContext)
   
@@ -27,7 +27,7 @@ function Login({ history }) {
       
       <div className="authenticationWrapper">
         <h1>Hello!</h1>
-        <h2>Log in for a personalized message :)</h2>
+        <h2>Log in for a personalized message</h2>
         <form onSubmit={handleLogin}>
           <label>
             Email
